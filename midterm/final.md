@@ -44,9 +44,9 @@
   - [Appendix C: Instructions for Setting Up and Running the Application](#appendix-c-instructions-for-setting-up-and-running-the-application)
     - [Prerequisites](#prerequisites)
     - [Step 1: Clone the Repository](#step-1-clone-the-repository)
-    - [Step 2: Install Dependencies](#step-2-install-dependencies)
-    - [Step 3: Set Up the Database](#step-3-set-up-the-database)
-    - [Step 4: Populate the Database](#step-4-populate-the-database)
+    - [Step 2: Set Up the Database](#step-2-set-up-the-database)
+    - [Step 3: Populate the Database](#step-3-populate-the-database)
+    - [Step 4: Install Dependencies](#step-4-install-dependencies)
     - [Step 5: Configure Database Connection](#step-5-configure-database-connection)
     - [Step 6: Start the Node.js Server](#step-6-start-the-nodejs-server)
     - [Step 7: Access the Web Application](#step-7-access-the-web-application)
@@ -467,22 +467,22 @@ Before you begin, ensure you have the following installed:
 
 Clone the project repository from GitHub or another version control system to your local machine.
 
-#### Step 2: Install Dependencies
+#### Step 2: Set Up the Database
 
-Navigate to the project directory in your command line interface and run the following command to install necessary Node.js dependencies:
+Navigate to the midterm directory `/midterm` and run the `data_preparation_scripts/database.py` script to create the database and tables. Ensure MySQL Server is running and you have the necessary permissions to create databases and tables.
+
+#### Step 3: Populate the Database
+
+Run the `data_preparation_scripts/preprocess.py` script to populate the database with the survey data. This script reads the survey CSV file, normalizes the data, and inserts it into the database.
+
+#### Step 4: Install Dependencies
+
+Navigate to the project directory `/midterm/app` in your command line interface and run the following command to install necessary Node.js dependencies:
 
 ```bash
 npm install
 ```
 This command installs all the dependencies listed in the package.json file, such as Express, EJS, and MySQL connector packages.
-
-#### Step 3: Set Up the Database
-
-Run the `data_preparation_scripts/database.py` script to create the database and tables. Ensure MySQL Server is running and you have the necessary permissions to create databases and tables.
-
-#### Step 4: Populate the Database
-
-Run the `data_preparation_scripts/preprocess.py` script to populate the database with the survey data. This script reads the survey CSV file, normalizes the data, and inserts it into the database.
 
 #### Step 5: Configure Database Connection
 
