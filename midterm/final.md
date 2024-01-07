@@ -22,6 +22,7 @@
 - [Data Analysis and Findings](#data-analysis-and-findings)
   - [Most Favored Programming Languages in 2023](#most-favored-programming-languages-in-2023)
   - [Most Common Level of Education Among Developers in 2023](#most-common-level-of-education-among-developers-in-2023)
+  - [Implications and Conclusions](#implications-and-conclusions)
 - [Web Application Development](#web-application-development)
   - [Overview](#overview)
   - [Back-end Development](#back-end-development)
@@ -32,6 +33,16 @@
 - [Conclusion](#conclusion-1)
 - [References](#references)
 - [Appendices](#appendices)
+  - [Appendix A: SQL Scripts for Database Creation and Data Import](#appendix-a-sql-scripts-for-database-creation-and-data-import)
+    - [A.1 Database Creation Script (database.py)](#a1-database-creation-script-databasepy)
+    - [A.2 Data Import and Normalization Script (preprocess.py)](#a2-data-import-and-normalization-script-preprocesspy)
+  - [Appendix B: Node.js Server Code](#appendix-b-nodejs-server-code)
+  - [Appendix C: Express Route Definitions](#appendix-c-express-route-definitions)
+  - [Appendix D: EJS Template Examples](#appendix-d-ejs-template-examples)
+  - [Appendix E: Instructions for Setting Up and Running the Application](#appendix-e-instructions-for-setting-up-and-running-the-application)
+  - [Appendix F: SQL Query Results](#appendix-f-sql-query-results)
+    - [F.1 Most Favored Programming Languages in 2023](#f1-most-favored-programming-languages-in-2023)
+    - [F.2 Most Common Level of Education Among Developers in 2023](#f2-most-common-level-of-education-among-developers-in-2023)
 
 ## Introduction
 This report delves into the 2023 Stack Overflow Developer Survey, aiming to uncover trends and preferences within the global developer community. By analyzing this comprehensive dataset, we seek to gain insights into the technologies, practices, and sentiments that shape the landscape of software development today.
@@ -102,7 +113,8 @@ This visual ERD illustrates the relationships between `Respondents`, `Education_
 
 
 ## Database Implementation
-The database was implemented in MySQL. Tables were created corresponding to the ERD, with appropriate data types and constraints to ensure data integrity. Relationships were established using foreign keys. A script was developed to import the survey data into the database, allowing for efficient querying and analysis.
+
+The database was implemented using MySQL, a widely used relational database management system. The implementation process involved the execution of SQL scripts to create a structured repository for the Stack Overflow Developer Survey 2023 data.
 
 ### Database Setup Script
 
@@ -119,37 +131,81 @@ This approach ensures that the database setup process is easily replicable, maki
 
 ## Data Cleaning and Preprocessing
 
-The preprocessing of the Stack Overflow Developer Survey 2023 data involved a series of steps to ensure the data was organized efficiently and ready for analysis. This process, commonly referred to as data normalization in database management, is crucial for reducing redundancy and improving data integrity.
+The preprocessing of the Stack Overflow Developer Survey 2023 data was an essential step to ensure the data was organized efficiently and was ready for analysis. The focus was on structuring the database to minimize redundancy and to improve data integrity through a process known as data normalization.
 
 ### Data Normalization
 
-Data normalization in the context of our project involved structuring the database to manage dependencies and store the data efficiently. The key aspects of this process included:
+Our approach to data normalization involved several critical steps:
 
-1. **Separation of Concerns**: We created distinct tables for different entities such as `respondents`, `education_levels`, and `languages`. This separation ensures that each data type is stored in its dedicated structure, adhering to the first principle of normalization.
+1. **Entity Separation**: We constructed distinct tables for different types of data. The `respondents` table contains individual survey responses, `education_levels` captures the various educational qualifications, and `languages` holds programming languages.
 
-2. **Reduction of Redundancy**: By establishing separate tables for `education_levels` and `languages` and linking them to `respondents` through associative tables (`respondents_education_levels` and `respondents_preferred_languages`), we minimized data redundancy. Each education level and language is stored once and referenced in the respondents' records.
+2. **Elimination of Redundancy**: Instead of repeatedly storing education levels and programming languages for each respondent within the `respondents` table, we created separate tables and established relationships through foreign keys. This method prevents data duplication and simplifies updates to the data.
 
-3. **Referential Integrity**: The use of foreign keys to establish relationships between tables maintains referential integrity, ensuring that links between tables are consistent and reliable.
+3. **Referential Integrity**: By using foreign keys, we ensured referential integrity within our database. This means that relationships between tables are consistent, and the database structure accurately reflects the real-world constructs of the survey data.
 
 ### Preprocessing Script
 
-The `data_preparation_scripts/preprocess.py` script was developed to handle the extraction and insertion of survey data into our normalized database schema. The script performs the following functions:
+The `data_preparation_scripts/preprocess.py` script was carefully crafted to populate our normalized database structure with the survey data:
 
-- **Data Extraction**: Reads the CSV file containing survey responses and extracts relevant information.
-- **Data Transformation**: Transforms the raw data to fit into our database schema. This includes parsing and splitting data from columns like `LanguageWantToWorkWith`.
-- **Database Insertion**: Inserts data into the respective tables, creating new entries for unique education levels and programming languages to avoid duplication.
+- **Data Extraction**: The script reads the survey CSV file and extracts the necessary information, such as respondent IDs, ages, education levels, and preferred programming languages.
 
-This preprocessing step was vital in setting the stage for efficient and effective data analysis, ensuring that our database structure supports complex queries without performance issues or data integrity concerns.
+- **Data Transformation**: Raw data from the CSV file is transformed to fit the database schema. This includes mapping education levels to their corresponding records in the `education_levels` table and doing the same for programming languages with the `languages` table.
+
+- **Database Population**: The script populates the database by inserting data into the correct tables. It ensures that each respondent is associated with their education level and preferred programming languages, maintaining the integrity of the relationships defined in our schema.
+
+This careful preprocessing is crucial for facilitating effective data analysis and ensuring that the database supports complex queries without compromising performance or data accuracy.
 
 
 ## Data Analysis and Findings
-The analysis focused on answering the two research questions. SQL queries were used to extract relevant data from the database, and the findings were as follows:
+
+In this section, we present the findings from the data analysis conducted on the Stack Overflow Developer Survey 2023. Our analysis aims to answer the two research questions defined earlier in the report.
 
 ### Most Favored Programming Languages in 2023
-(Detail the analysis findings on the most popular programming languages based on the survey responses.)
+
+To determine the most popular programming languages among developers this year, we performed a query on the database that counts the number of times each language was mentioned as preferred. The following SQL query was executed against the `respondents_preferred_languages` and `languages` tables:
+
+```sql
+SELECT l.name AS `language`, COUNT(*) AS `count`
+FROM respondents_preferred_languages rpl
+INNER JOIN languages l ON l.id = rpl.language_id
+GROUP BY l.name
+ORDER BY `count` DESC;
+```
+This query provides us with a list of programming languages ranked by their popularity. The most favored language is the one with the highest count, indicating that a large number of developers are interested in working with it. The results from this query can inform educators, companies, and developers about current trends in programming language demand.
+
+The results from our SQL query showed that Python, JavaScript, and TypeScript are the top three programming languages favored by developers in 2023, with Python leading the pack. The popularity of Python could be attributed to its versatile use in emerging fields such as data science, machine learning, and AI, as well as its reputation for having a gentle learning curve. JavaScript and TypeScript's popularity underscores the ongoing importance of web development, with TypeScript gaining traction for its enhancements to JavaScript's type system.
+
+Rust's high ranking reflects the growing appreciation for its performance and safety guarantees, suggesting a keen interest in systems programming. SQL and HTML/CSS are foundational technologies for database management and web development, respectively, which explains their continued strong presence.
+
+The diversity of languages and their use cases illustrate a broad landscape of programming preferences, with developers likely choosing languages based on project requirements, personal preference, and job market demands.
 
 ### Most Common Level of Education Among Developers in 2023
-(Present the findings on the educational qualifications of developers, highlighting the most common level of education as revealed by the survey data.)
+
+Understanding the educational background of developers can provide insights into the qualifications prevalent in the tech industry. To explore this aspect, we utilized the following SQL query which aggregates the count of developers by their reported education level:
+
+```sql
+SELECT el.name AS `Education Level`, COUNT(*) AS `count`
+FROM respondents r
+INNER JOIN education_levels el ON el.id = r.education_level_id
+GROUP BY el.name
+ORDER BY `count` DESC;
+```
+The outcome of this query reveals the education levels that are most common among the survey respondents, providing a snapshot of the formal education that developers have completed. Such information could be valuable for hiring managers, policy-makers in education, and prospective students making career planning decisions.
+
+The most common level of education among developers is a Bachelor’s degree, followed by a Master’s degree, and some college/university study without earning a degree. This distribution suggests that while higher education is prevalent in the field, there is a significant portion of the developer population who may be self-taught or have pursued alternative education paths such as coding bootcamps or online courses.
+
+The presence of developers with only secondary education or a professional degree indicates that the tech industry is accommodating to individuals with a wide range of educational backgrounds. The data underscores the tech industry's focus on skills and practical experience over formal education, which can be seen as an encouraging sign for inclusivity and diversity in educational backgrounds within the field.
+
+### Implications and Conclusions
+
+The analysis of favored programming languages suggests that the industry continues to value a mix of established and modern languages, highlighting the importance of versatility in a developer's skill set. For educators and learners, this data emphasizes the need to focus on both the fundamentals of web development and the understanding of modern, scalable, and secure programming practices.
+
+The educational background findings highlight a significant representation of developers with formal education, while also illustrating the tech industry's flexibility and openness to non-traditional educational paths. For hiring practices, this may suggest a shift towards skill-based assessments and a recognition of the value of practical experience and self-directed learning.
+
+In conclusion, the Stack Overflow Developer Survey 2023 provides valuable insights into the evolving landscape of the developer community. It shows an industry in flux, adaptable to new technologies and varied educational experiences, and underscores the dynamic nature of software development as a field of expertise.
+
+The detailed results of the SQL queries are documented in the Appendices section, offering a granular view of the data that informed these conclusions.
+
 
 
 ## Web Application Development
@@ -186,8 +242,203 @@ This report provides valuable insights into the preferences and trends within th
 
 
 ## Appendices
-Appendix A: SQL Scripts for Database Creation and Data Import  
-Appendix B: Node.js Server Code  
-Appendix C: Express Route Definitions  
-Appendix D: EJS Template Examples  
-Appendix E: Instructions for Setting Up and Running the Application
+### Appendix A: SQL Scripts for Database Creation and Data Import
+
+#### A.1 Database Creation Script (database.py)
+
+This script is used to set up the database structure for importing the Stack Overflow Developer Survey data.
+
+```python
+# database.py
+import mysql.connector
+
+# Database connection details
+HOST = 'localhost'
+USER = 'root'
+DB_NAME = 'stackoverflow_survey'
+
+# Establish database connection
+conn = mysql.connector.connect(host=HOST, user=USER)
+cursor = conn.cursor()
+
+# Create database and tables
+cursor.execute(f"DROP DATABASE IF EXISTS {DB_NAME};")
+cursor.execute(f"CREATE DATABASE {DB_NAME};")
+conn.commit()
+conn.database = DB_NAME
+
+create_tables_sql = """
+CREATE TABLE education_levels (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) UNIQUE
+);
+
+CREATE TABLE respondents (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    response_id VARCHAR(255),
+    age VARCHAR(255),
+    education_level_id INT NOT NULL,
+    FOREIGN KEY (education_level_id) REFERENCES education_levels(id)
+);
+
+CREATE TABLE languages (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) UNIQUE
+);
+
+CREATE TABLE respondents_preferred_languages (
+    respondent_id INT,
+    language_id INT,
+    FOREIGN KEY (respondent_id) REFERENCES respondents(id),
+    FOREIGN KEY (language_id) REFERENCES languages(id)
+);
+"""
+
+for statement in create_tables_sql.split(';'):
+    if statement.strip():
+        cursor.execute(statement)
+        conn.commit()
+
+cursor.close()
+conn.close()
+```
+
+#### A.2 Data Import and Normalization Script (preprocess.py)
+
+This script reads the Stack Overflow Developer Survey data from a CSV file, normalizes it, and populates the MySQL database.
+```python
+# preprocess.py
+import mysql.connector
+import csv
+
+# Database connection details
+HOST = 'localhost'
+USER = 'root'
+DB_NAME = 'stackoverflow_survey'
+
+# Path to the CSV file
+csv_file_path = 'download/survey_results_public.csv'
+
+# Connect to the database
+conn = mysql.connector.connect(host=HOST, user=USER, database=DB_NAME)
+cursor = conn.cursor()
+
+# Function to get or create ID for a value in a table
+def get_or_create_id(cursor, table, value):
+    cursor.execute(f"SELECT id FROM {table} WHERE name = %s", (value,))
+    result = cursor.fetchone()
+    if result:
+        return result[0]
+    else:
+        cursor.execute(f"INSERT INTO {table} (name) VALUES (%s)", (value,))
+        conn.commit()
+        return cursor.lastrowid
+
+# Read and process each row in the CSV file
+with open(csv_file_path, 'r', encoding='utf-8') as file:
+    reader = csv.DictReader(file)
+    for row in reader:
+        # Skip rows with missing education level
+        education_level = row['EdLevel']
+        if education_level is None: break
+        education_level_id = get_or_create_id(cursor, 'education_levels', education_level)
+
+        # Insert respondent data
+        print(row['ResponseId'] + ' ' + row['Age'] + ' ' + str(education_level_id))
+        cursor.execute("INSERT INTO respondents (response_id, age, education_level_id) VALUES (%s, %s, %s)", (row['ResponseId'], row['Age'], education_level_id))
+        respondent_id = cursor.lastrowid
+
+        # Process preferred languages
+        languages = row['LanguageWantToWorkWith'].split(';')
+        for language in languages:
+            if language:
+                language_id = get_or_create_id(cursor, 'languages', language)
+                cursor.execute("INSERT INTO respondents_preferred_languages (respondent_id, language_id) VALUES (%s, %s)", (respondent_id, language_id))
+
+        conn.commit()
+
+# Close the database connection
+cursor.close()
+conn.close()
+```
+
+### Appendix B: Node.js Server Code
+### Appendix C: Express Route Definitions
+### Appendix D: EJS Template Examples
+### Appendix E: Instructions for Setting Up and Running the Application
+### Appendix F: SQL Query Results
+
+#### F.1 Most Favored Programming Languages in 2023
+
+This table displays the most popular programming languages among developers according to the 2023 Stack Overflow Developer Survey.
+
+| Language               | Count |
+|------------------------|-------|
+| Python                 | 3846  |
+| JavaScript             | 3768  |
+| TypeScript             | 3679  |
+| Rust                   | 3424  |
+| SQL                    | 3333  |
+| HTML/CSS               | 3325  |
+| C#                     | 2253  |
+| Bash/Shell (all shells)| 2061  |
+| Go                     | 1994  |
+| Java                   | 1689  |
+| C++                    | 1683  |
+| Kotlin                 | 1232  |
+| C                      | 1204  |
+| PHP                    | 840   |
+| NA                     | 823   |
+| PowerShell             | 734   |
+| Dart                   | 652   |
+| Swift                  | 634   |
+| Ruby                   | 472   |
+| Haskell                | 468   |
+| Zig                    | 440   |
+| Assembly               | 440   |
+| Lua                    | 427   |
+| Elixir                 | 380   |
+| R                      | 352   |
+| Scala                  | 335   |
+| F#                     | 257   |
+| Julia                  | 243   |
+| Lisp                   | 209   |
+| Clojure                | 188   |
+| Solidity               | 172   |
+| GDScript               | 148   |
+| Groovy                 | 142   |
+| Erlang                 | 141   |
+| Visual Basic (.Net)    | 133   |
+| OCaml                  | 132   |
+| Objective-C            | 128   |
+| MATLAB                 | 123   |
+| Perl                   | 117   |
+| Nim                    | 110   |
+| VBA                    | 97    |
+| Crystal                | 74    |
+| Delphi                 | 72    |
+| Fortran                | 68    |
+| Prolog                 | 65    |
+| Ada                    | 56    |
+| APL                    | 52    |
+| Apex                   | 44    |
+| SAS                    | 36    |
+| Cobol                  | 36    |
+| Raku                   | 35    |
+| Flow                   | 20    |
+
+#### F.2 Most Common Level of Education Among Developers in 2023
+
+This table represents the distribution of education levels among developers as revealed by the 2023 Stack Overflow Developer Survey.
+
+| Education Level                                        | Count |
+|--------------------------------------------------------|-------|
+| Bachelor’s degree (B.A., B.S., B.Eng., etc.)           | 4370  |
+| Master’s degree (M.A., M.S., M.Eng., MBA, etc.)        | 2107  |
+| Some college/university study without earning a degree | 1330  |
+| Secondary school (e.g. American high school, etc.)     | 970   |
+| Professional degree (JD, MD, Ph.D, Ed.D, etc.)         | 409   |
+| Associate degree (A.A., A.S., etc.)                    | 327   |
+| Primary/elementary school                              | 214   |
+| Something else                                         | 178   |
+| NA                                                     | 95    |
