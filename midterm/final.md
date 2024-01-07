@@ -11,6 +11,7 @@
 - [Introduction](#introduction)
 - [Dataset Overview](#dataset-overview)
 - [Exploratory Data Analysis (EDA)](#exploratory-data-analysis-eda)
+  - [Key Observations from EDA](#key-observations-from-eda)
 - [Defining Research Questions](#defining-research-questions)
 - [Data Modeling](#data-modeling)
 - [Database Implementation](#database-implementation)
@@ -40,7 +41,29 @@ The Stack Overflow Developer Survey 2023 is a comprehensive collection of respon
 
 
 ## Exploratory Data Analysis (EDA)
-Initial EDA revealed intriguing patterns in developer preferences and behaviors. Statistical analysis was conducted on various aspects such as preferred programming languages, job satisfaction levels, and remote work trends. This exploratory phase helped in identifying key areas for detailed analysis.
+
+During the initial phase of exploratory data analysis, we examined a subset of the Stack Overflow Developer Survey 2023 to identify patterns and gain preliminary insights. This analysis focused on understanding the distribution and trends of various attributes, such as programming languages popularity, respondents' age distribution, and education levels.
+
+Below is a snapshot of the data we analyzed, formatted as a table for clarity:
+
+| ResponseId | Age   | EdLevel                              | LanguageWantToWorkWith  |
+|------------|-------|--------------------------------------|-------------------------|
+| 1          | 25-34 | Bachelor’s degree (B.A., B.S., ...)  | JavaScript; HTML/CSS    |
+| 2          | 18-24 | Some college/university study        | Python; Rust            |
+| 3          | 35-44 | Master’s degree (M.A., M.S., ...)    | Go; TypeScript          |
+| ...        | ...   | ...                                  | ...                     |
+
+*Sample data extracted from the Stack Overflow Developer Survey 2023.*
+
+### Key Observations from EDA
+
+1. **Programming Language Popularity**: Early analysis suggests a strong preference for web-based languages such as JavaScript and Python. Further investigation will determine the most favored programming languages in 2023.
+
+2. **Age Distribution**: There is a diverse age range among respondents, with a notable concentration in the 25-34 age bracket. This may reflect the demographics of active developers in the industry.
+
+3. **Educational Background**: Preliminary data shows a wide range of educational backgrounds, with a significant number of respondents holding a Bachelor's degree. We will analyze how educational levels correlate with other factors such as language preference.
+
+The EDA provided valuable direction for our research questions and helped to tailor our subsequent data modeling and analysis efforts. It is evident from the early stages that the survey data is rich with insights that can illuminate the current state of the developer community and the tech industry at large.
 
 
 ## Defining Research Questions
