@@ -56,7 +56,7 @@
     - [D.2 Most Common Level of Education Among Developers in 2023](#d2-most-common-level-of-education-among-developers-in-2023)
 
 ## Introduction
-This report delves into the 2023 Stack Overflow Developer Survey, aiming to uncover trends and preferences within the global developer community. By analyzing this comprehensive dataset, we seek to gain insights into the technologies, practices, and sentiments that shape the landscape of software development today.
+This report delves into the 2023 Stack Overflow Developer Survey, aiming to uncover trends and preferences within the global developer community. By analyzing this comprehensive dataset [Stack Overflow Developer Survey 2023](#references), we seek to gain insights into the technologies, practices, and sentiments that shape the landscape of software development today.
 
 ## Dataset Overview
 The Stack Overflow Developer Survey 2023 is a comprehensive collection of responses from thousands of developers worldwide. It covers a wide range of topics from programming languages, frameworks, and tools to career satisfaction and development practices. This dataset is an invaluable resource for understanding current trends in the tech industry.
@@ -100,7 +100,7 @@ Based on our objectives and the data available in the Stack Overflow Developer S
 
 ## Data Modeling
 
-The data modeling for the Stack Overflow Developer Survey 2023 was adapted to a revised Entity-Relationship Diagram (ERD) that reflects the updated database structure. This ERD serves as a comprehensive blueprint for our database, illustrating the interconnected nature of the data. The key components of the ERD, in alignment with the new database schema, include:
+The data modeling for the Stack Overflow Developer Survey 2023 was adapted to a revised Entity-Relationship Diagram (ERD) that reflects the updated database structure. This ERD serves as a comprehensive blueprint for our database, as detailed in [Appendix A](#appendix-a-sql-scripts-for-database-creation-and-data-import). The key components of the ERD, in alignment with the new database schema, include:
 
 - **Entities**: Our ERD includes the entities `Education_Levels`, `Respondents`, and `Languages`. These entities correspond to the main data points we are analyzing from the survey:
   - `Education_Levels` contains the various educational qualifications reported by the survey respondents.
@@ -215,7 +215,7 @@ The educational background findings highlight a significant representation of de
 
 In conclusion, the Stack Overflow Developer Survey 2023 provides valuable insights into the evolving landscape of the developer community. It shows an industry in flux, adaptable to new technologies and varied educational experiences, and underscores the dynamic nature of software development as a field of expertise.
 
-The detailed results of the SQL queries are documented in the Appendices section, offering a granular view of the data that informed these conclusions.
+The detailed results of the SQL queries are documented in [Appendix D](#appendix-d-sql-query-results), offering a granular view of the data that informed these conclusions.
 
 
 
@@ -262,7 +262,7 @@ This page offers insights into the most common level of education among develope
 - **Querying Educational Background**: The application allows users to explore the distribution of educational levels among developers.
 
 ### Application Deployment
-The application is set up to run locally for demonstration purposes. Instructions for setting up and running the application are included in the Appendices section.
+The application is set up to run locally for demonstration purposes. Instructions for setting up and running the application are included in [Appendix C](#appendix-c-instructions-for-setting-up-and-running-the-application).
 
 ### Conclusion
 This simple web application serves as a practical tool for exploring the Stack Overflow Developer Survey data, demonstrating the potential of Node.js and Express in building effective web solutions with minimal complexity.
@@ -273,10 +273,10 @@ This report provides valuable insights into the preferences and trends within th
 
 
 ## References
-1. Stack Overflow Developer Survey 2023. Stack Overflow. URL: [https://insights.stackoverflow.com/survey](https://insights.stackoverflow.com/survey)
-2. Node.js Documentation. Node.js. URL: [https://nodejs.org/en/docs/](https://nodejs.org/en/docs/)
-3. Express.js Documentation. Express.js. URL: [http://expressjs.com/](http://expressjs.com/)
-4. EJS Documentation. EJS. URL: [https://ejs.co/](https://ejs.co/)
+1. Stack Overflow Developer Survey 2023: [https://insights.stackoverflow.com/survey](https://insights.stackoverflow.com/survey)
+2. Node.js Documentation: [https://nodejs.org/en/docs/](https://nodejs.org/en/docs/)
+3. Express.js Documentation: [http://expressjs.com/](http://expressjs.com/)
+4. EJS Documentation: [https://ejs.co/](https://ejs.co/)
 
 ### Legal Notice Regarding the Use of Survey Data
 The dataset used in this project, The Public 2023 Stack Overflow Developer Survey Results, is available under the Open Database License (ODbL): http://opendatacommons.org/licenses/odbl/1.0/. Any rights in individual contents of the database are licensed under the Database Contents License: http://opendatacommons.org/licenses/dbcl/1.0/.
