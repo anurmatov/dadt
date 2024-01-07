@@ -32,18 +32,28 @@
   - [Conclusion](#conclusion)
 - [Conclusion](#conclusion-1)
 - [References](#references)
-- [Legal Notice Regarding the Use of Survey Data](#legal-notice-regarding-the-use-of-survey-data)
+  - [Legal Notice Regarding the Use of Survey Data](#legal-notice-regarding-the-use-of-survey-data)
 - [Appendices](#appendices)
   - [Appendix A: SQL Scripts for Database Creation and Data Import](#appendix-a-sql-scripts-for-database-creation-and-data-import)
     - [A.1 Database Creation Script (database.py)](#a1-database-creation-script-databasepy)
     - [A.2 Data Import and Normalization Script (preprocess.py)](#a2-data-import-and-normalization-script-preprocesspy)
   - [Appendix B: Node.js Server Code](#appendix-b-nodejs-server-code)
-  - [Appendix C: Express Route Definitions](#appendix-c-express-route-definitions)
-  - [Appendix D: EJS Template Examples](#appendix-d-ejs-template-examples)
-  - [Appendix E: Instructions for Setting Up and Running the Application](#appendix-e-instructions-for-setting-up-and-running-the-application)
-  - [Appendix F: SQL Query Results](#appendix-f-sql-query-results)
-    - [F.1 Most Favored Programming Languages in 2023](#f1-most-favored-programming-languages-in-2023)
-    - [F.2 Most Common Level of Education Among Developers in 2023](#f2-most-common-level-of-education-among-developers-in-2023)
+    - [Server Setup and Dependencies](#server-setup-and-dependencies)
+    - [Core Functionalities](#core-functionalities)
+    - [Code Snippets](#code-snippets)
+  - [Appendix C: Instructions for Setting Up and Running the Application](#appendix-c-instructions-for-setting-up-and-running-the-application)
+    - [Prerequisites](#prerequisites)
+    - [Step 1: Clone the Repository](#step-1-clone-the-repository)
+    - [Step 2: Install Dependencies](#step-2-install-dependencies)
+    - [Step 3: Set Up the Database](#step-3-set-up-the-database)
+    - [Step 4: Populate the Database](#step-4-populate-the-database)
+    - [Step 5: Configure Database Connection](#step-5-configure-database-connection)
+    - [Step 6: Start the Node.js Server](#step-6-start-the-nodejs-server)
+    - [Step 7: Access the Web Application](#step-7-access-the-web-application)
+    - [Step 8: Explore the Application](#step-8-explore-the-application)
+  - [Appendix D: SQL Query Results](#appendix-d-sql-query-results)
+    - [D.1 Most Favored Programming Languages in 2023](#d1-most-favored-programming-languages-in-2023)
+    - [D.2 Most Common Level of Education Among Developers in 2023](#d2-most-common-level-of-education-among-developers-in-2023)
 
 ## Introduction
 This report delves into the 2023 Stack Overflow Developer Survey, aiming to uncover trends and preferences within the global developer community. By analyzing this comprehensive dataset, we seek to gain insights into the technologies, practices, and sentiments that shape the landscape of software development today.
@@ -252,7 +262,7 @@ This page offers insights into the most common level of education among develope
 - **Querying Educational Background**: The application allows users to explore the distribution of educational levels among developers.
 
 ### Application Deployment
-The application is set up to run locally for demonstration purposes. Instructions for setting up and running the application are included in the repository's README file.
+The application is set up to run locally for demonstration purposes. Instructions for setting up and running the application are included in the Appendices section.
 
 ### Conclusion
 This simple web application serves as a practical tool for exploring the Stack Overflow Developer Survey data, demonstrating the potential of Node.js and Express in building effective web solutions with minimal complexity.
@@ -268,7 +278,7 @@ This report provides valuable insights into the preferences and trends within th
 3. Express.js Documentation. Express.js. URL: [http://expressjs.com/](http://expressjs.com/)
 4. EJS Documentation. EJS. URL: [https://ejs.co/](https://ejs.co/)
 
-## Legal Notice Regarding the Use of Survey Data
+### Legal Notice Regarding the Use of Survey Data
 The dataset used in this project, The Public 2023 Stack Overflow Developer Survey Results, is available under the Open Database License (ODbL): http://opendatacommons.org/licenses/odbl/1.0/. Any rights in individual contents of the database are licensed under the Database Contents License: http://opendatacommons.org/licenses/dbcl/1.0/.
 
 In compliance with the ODbL, this project is free to share, adapt, and create derivative works from The Public 2023 Stack Overflow Developer Survey Results, provided that proper attribution is given to Stack Overflow, the database remains open (if redistributed), and any adapted database is shared under the same ODbL license.
@@ -396,12 +406,106 @@ conn.close()
 ```
 
 ### Appendix B: Node.js Server Code
-### Appendix C: Express Route Definitions
-### Appendix D: EJS Template Examples
-### Appendix E: Instructions for Setting Up and Running the Application
-### Appendix F: SQL Query Results
 
-#### F.1 Most Favored Programming Languages in 2023
+This appendix provides an overview of the Node.js server code developed for the web application. The server is built using the Express.js framework and is responsible for handling HTTP requests, interacting with the MySQL database, and serving the web pages.
+
+#### Server Setup and Dependencies
+
+The server is set up in a file named `app.js`. Key dependencies include Express.js for the web server functionality and the MySQL package for database interactions. The `express` module is used to create an instance of an Express application, and the `mysql` module is utilized for connecting to and querying the MySQL database.
+
+#### Core Functionalities
+
+The server code consists of several key functionalities:
+
+1. **Database Connection**: Establishes a connection to the MySQL database using the credentials and parameters defined.
+
+2. **Route Handling**: Defines various routes to handle client requests. Each route corresponds to a different functionality or web page of the application.
+
+3. **Data Retrieval and Processing**: Includes logic to query the database based on user requests and process the results for display.
+
+4. **Rendering Web Pages**: Uses EJS templating to render HTML pages dynamically based on the data retrieved from the database.
+
+#### Code Snippets
+
+Below are some key snippets from the server code:
+
+```javascript
+// Sample code snippet for establishing a database connection
+const mysql = require('mysql');
+const connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'root',
+  password: '',
+  database: 'stackoverflow_survey'
+});
+
+// Sample code snippet for defining a route
+app.get('/favored-languages', (req, res) => {
+  // Database query and response handling logic
+});
+
+// Sample code snippet for starting the server
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
+```
+The complete server code can be found in the project repository under the `app.js` file.
+
+### Appendix C: Instructions for Setting Up and Running the Application
+
+This appendix provides a step-by-step guide for setting up and running the web application developed for analyzing the 2023 Stack Overflow Developer Survey data. The application is built using Node.js and Express, with a MySQL database backend.
+
+#### Prerequisites
+
+Before you begin, ensure you have the following installed:
+- Node.js
+- MySQL Server
+- A web browser
+
+#### Step 1: Clone the Repository
+
+Clone the project repository from GitHub or another version control system to your local machine.
+
+#### Step 2: Install Dependencies
+
+Navigate to the project directory in your command line interface and run the following command to install necessary Node.js dependencies:
+
+```bash
+npm install
+```
+This command installs all the dependencies listed in the package.json file, such as Express, EJS, and MySQL connector packages.
+
+#### Step 3: Set Up the Database
+
+Run the `data_preparation_scripts/database.py` script to create the database and tables. Ensure MySQL Server is running and you have the necessary permissions to create databases and tables.
+
+#### Step 4: Populate the Database
+
+Run the `data_preparation_scripts/preprocess.py` script to populate the database with the survey data. This script reads the survey CSV file, normalizes the data, and inserts it into the database.
+
+#### Step 5: Configure Database Connection
+
+Open the `app.js` file and update the database connection settings to match your MySQL server details (host, user, password, and database name).
+
+#### Step 6: Start the Node.js Server
+
+Run the following command in the project directory to start the Node.js server:
+```bash
+node app.js
+```
+
+#### Step 7: Access the Web Application
+
+Open a web browser and navigate to http://localhost:3000 (or the appropriate port number if you've configured a different one). You should see the home page of the web application.
+
+#### Step 8: Explore the Application
+
+Use the web application to view the reports and analyses on the Stack Overflow Developer Survey data. Navigate between different pages using the links provided.
+
+### Appendix D: SQL Query Results
+
+#### D.1 Most Favored Programming Languages in 2023
 
 This table displays the most popular programming languages among developers according to the 2023 Stack Overflow Developer Survey.
 
@@ -460,7 +564,7 @@ This table displays the most popular programming languages among developers acco
 | Raku                   | 35    |
 | Flow                   | 20    |
 
-#### F.2 Most Common Level of Education Among Developers in 2023
+#### D.2 Most Common Level of Education Among Developers in 2023
 
 This table represents the distribution of education levels among developers as revealed by the 2023 Stack Overflow Developer Survey.
 
