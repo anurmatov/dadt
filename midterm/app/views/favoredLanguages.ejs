@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Favored Programming Languages</title>
+</head>
+<body>
+    <h1>Favored Programming Languages in 2023</h1>
+    <ul>
+        <% for(let language of languages) { %>
+            <li><%= language.language %>: <%= language.count %></li>
+        <% } %>
+    </ul>
+</body>
+</html>

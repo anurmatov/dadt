@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Common Education Levels</title>
+</head>
+<body>
+    <h1>Most Common Level of Education Among Developers in 2023</h1>
+    <ul>
+        <% for(let level of educationLevels) { %>
+            <li><%= level['Education Level'] %>: <%= level.count %></li>
+        <% } %>
+    </ul>
+</body>
+</html>
