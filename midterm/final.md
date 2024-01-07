@@ -32,6 +32,7 @@
   - [Conclusion](#conclusion)
 - [Conclusion](#conclusion-1)
 - [References](#references)
+- [Legal Notice Regarding the Use of Survey Data](#legal-notice-regarding-the-use-of-survey-data)
 - [Appendices](#appendices)
   - [Appendix A: SQL Scripts for Database Creation and Data Import](#appendix-a-sql-scripts-for-database-creation-and-data-import)
     - [A.1 Database Creation Script (database.py)](#a1-database-creation-script-databasepy)
@@ -219,6 +220,33 @@ The back-end of the application was developed using Node.js and Express. It incl
 ### Front-end Development
 For the front-end, simple templating was used, employing Express's integrated template engine, EJS (Embedded JavaScript). This approach allowed for dynamically generating HTML pages based on the data retrieved from the back-end. The user interface includes basic forms and tables to facilitate data querying and display the results in a readable format.
 
+**Main Page**
+
+Here is a screenshot of the main page of the application:
+
+<p align="center">
+  <img src="images/main.png" alt="Image" width="500">
+</p>
+
+This page provides an introduction and navigation to the different sections of the application, ensuring a user-friendly experience.
+
+**Programming Languages Page**
+
+Here is a screenshot of the first report page:
+<p align="center">
+  <img src="images/first.png" alt="Image" width="500">
+</p>
+
+This report page displays the analysis of the most favored programming languages in 2023, providing an interactive way for users to explore this aspect of the survey data.
+
+**Educational Background Page**
+
+Here is a screenshot of the second report page:
+<p align="center">
+  <img src="images/second.png" alt="Image" width="500">
+</p>
+This page offers insights into the most common level of education among developers in 2023, visually presenting the findings from the survey data.
+
 ### Features
 - **Querying Programming Languages**: Users can view statistics about the most popular programming languages in 2023.
 - **Querying Educational Background**: The application allows users to explore the distribution of educational levels among developers.
@@ -239,6 +267,11 @@ This report provides valuable insights into the preferences and trends within th
 2. Node.js Documentation. Node.js. URL: [https://nodejs.org/en/docs/](https://nodejs.org/en/docs/)
 3. Express.js Documentation. Express.js. URL: [http://expressjs.com/](http://expressjs.com/)
 4. EJS Documentation. EJS. URL: [https://ejs.co/](https://ejs.co/)
+
+## Legal Notice Regarding the Use of Survey Data
+The dataset used in this project, The Public 2023 Stack Overflow Developer Survey Results, is available under the Open Database License (ODbL): http://opendatacommons.org/licenses/odbl/1.0/. Any rights in individual contents of the database are licensed under the Database Contents License: http://opendatacommons.org/licenses/dbcl/1.0/.
+
+In compliance with the ODbL, this project is free to share, adapt, and create derivative works from The Public 2023 Stack Overflow Developer Survey Results, provided that proper attribution is given to Stack Overflow, the database remains open (if redistributed), and any adapted database is shared under the same ODbL license.
 
 
 ## Appendices
