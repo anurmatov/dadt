@@ -22,6 +22,11 @@ db.connect((err) => {
   console.log('Connected to database');
 });
 
+// Index Route
+app.get('/', (req, res) => {
+    res.render('index');
+});
+
 // Define a route to get favored programming languages
 app.get('/favored-languages', (req, res) => {
   let sqlQuery = 'SELECT l.name `language`, count(*) `count` FROM respondents_preferred_languages rpl INNER JOIN languages l ON l.id = rpl.language_id GROUP BY l.name ORDER BY `count` DESC';
