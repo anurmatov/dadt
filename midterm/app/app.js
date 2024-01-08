@@ -1,3 +1,4 @@
+// I wrote this code
 const express = require('express');
 const mysql = require('mysql');
 
@@ -50,3 +51,4 @@ const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+// end of code I wrote

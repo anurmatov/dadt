@@ -1,3 +1,4 @@
+# I wrote this code
 import mysql.connector
 import zipfile
 import csv
@@ -59,3 +60,4 @@ with open(csv_file_path, 'r', encoding='utf-8') as file:
 # Close the database connection
 cursor.close()
 conn.close()
+# end of code I wrote

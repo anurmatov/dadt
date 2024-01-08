@@ -1,3 +1,4 @@
+# I wrote this code
 import mysql.connector
 
 # Database connection details
@@ -50,3 +51,4 @@ for statement in create_tables_sql.split(';'):
 
 cursor.close()
 conn.close()
+# end of code I wrote
