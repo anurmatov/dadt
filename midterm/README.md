@@ -270,7 +270,7 @@ This simple web application serves as a practical tool for exploring the Stack O
 
 ## Conclusion
 
-This report, centered around the Stack Overflow Developer Survey 2023, effectively demonstrates various database techniques. By exploring and analyzing this dataset, we gained valuable insights into the technical aspects of database management and application development. 
+This report, centered around the Stack Overflow Developer Survey 2023, effectively demonstrates various database techniques. By exploring and analyzing this dataset (the analysis was conducted on a sample of the first 10,000 survey responses, as discussed in the course webinar), we gained valuable insights into the technical aspects of database management and application development. 
 
 Key findings include the identification of Python, JavaScript, and TypeScript as the most favored programming languages in 2023. This emphasizes the importance of these languages in current software development trends. Additionally, the discovery that most developers possess a Bachelor's degree, coupled with a significant number of self-taught professionals, reflects the diverse educational backgrounds prevalent in the tech industry.
 
