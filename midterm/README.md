@@ -284,6 +284,7 @@ Future endeavors could focus on enhancing the application's capabilities, explor
 2. Node.js Documentation: [https://nodejs.org/en/docs/](https://nodejs.org/en/docs/)
 3. Express.js Documentation: [http://expressjs.com/](http://expressjs.com/)
 4. EJS Documentation: [https://ejs.co/](https://ejs.co/)
+5. My Project GitHub Repository: [https://github.com/anurmatov/dadt/blob/main/midterm/README.md](https://github.com/anurmatov/dadt/blob/main/midterm/README.md)
 
 ### Legal Notice Regarding the Use of Survey Data
 The dataset used in this project, The Public 2023 Stack Overflow Developer Survey Results, is available under the Open Database License (ODbL): http://opendatacommons.org/licenses/odbl/1.0/. Any rights in individual contents of the database are licensed under the Database Contents License: http://opendatacommons.org/licenses/dbcl/1.0/.
